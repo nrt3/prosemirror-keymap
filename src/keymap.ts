@@ -81,12 +81,6 @@ export function keydownHandler(bindings: {[key: string]: Command}): (view: Edito
     if (direct && direct(view.state, view.dispatch, view)) return true
     // A character key
     if (name.length == 1 && name != " ") {
-      if (event.shiftKey) {
-        // In case the name was already modified by shift, try looking
-        // it up without its shift modifier
-        let noShift = map[modifiers(name, event, false)]
-        if (noShift && noShift(view.state, view.dispatch, view)) return true
-      }
       if ((event.shiftKey || event.altKey || event.metaKey || name.charCodeAt(0) > 127) &&
           (baseName = base[event.keyCode]) && baseName != name) {
         // Try falling back to the keyCode when there's a modifier
